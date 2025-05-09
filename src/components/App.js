@@ -1,13 +1,24 @@
-
 import React from "react";
-import './../styles/App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./Home";
+import Category from "./Category";
+import ItemDetail from "./ItemDetail";
 
-const App = () => {
+function App() {
   return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path=":category" element={<Category />}>
+            <Route path=":itemId" element={<ItemDetail />} />
+          </Route>
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
